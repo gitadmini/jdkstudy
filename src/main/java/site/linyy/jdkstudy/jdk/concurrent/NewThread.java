@@ -24,10 +24,10 @@ public class NewThread {
             throws InterruptedException, ExecutionException {
         // new1();
         // new2();
-        // new3();
+        new3();
         // new4();
         // new4_2();
-        new5();
+        // new5();
     }
 
     private static void new5() {
@@ -129,6 +129,13 @@ public class NewThread {
         FutureTask<String> f = new FutureTask<>(c);
         Thread t = new Thread(f);
         t.start();
+        try {
+            String str = f.get(2, TimeUnit.SECONDS); // 超时未拿到，则抛出异常
+            System.out.println(str);
+        } catch (Exception e) {
+            System.out.println("not yet");
+            e.printStackTrace();
+        }
     }
 
     private static void new2() {
